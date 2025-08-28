@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: priyan
+      changes:
+        - createTable:
+            tableName: borrows
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_borrow_user
+                    references: users(id)
+              - column:
+                  name: book_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_borrow_book
+                    references: books(id)
+              - column:
+                  name: borrow_date
+                  type: DATE
+              - column:
+                  name: return_date
+                  type: DATE
